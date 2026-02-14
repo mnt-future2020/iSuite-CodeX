@@ -62,8 +62,10 @@ class BitBucketService(
 
 bitbucket_service_cls = os.environ.get(
     'ISUITE_BITBUCKET_SERVICE_CLS',
-    'OPENHANDS_BITBUCKET_SERVICE_CLS',
-    'openhands.integrations.bitbucket.bitbucket_service.BitBucketService',
+    os.environ.get(
+        'OPENHANDS_BITBUCKET_SERVICE_CLS',
+        'openhands.integrations.bitbucket.bitbucket_service.BitBucketService',
+    ),
 )
 
 # Lazy loading to avoid circular imports

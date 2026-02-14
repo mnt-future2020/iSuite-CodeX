@@ -73,8 +73,10 @@ class ConversationValidator:
 def create_conversation_validator() -> ConversationValidator:
     conversation_validator_cls = os.environ.get(
         'ISUITE_CONVERSATION_VALIDATOR_CLS',
-        'OPENHANDS_CONVERSATION_VALIDATOR_CLS',
-        'openhands.storage.conversation.conversation_validator.ConversationValidator',
+        os.environ.get(
+            'OPENHANDS_CONVERSATION_VALIDATOR_CLS',
+            'openhands.storage.conversation.conversation_validator.ConversationValidator',
+        ),
     )
     ConversationValidatorImpl = get_impl(
         ConversationValidator, conversation_validator_cls

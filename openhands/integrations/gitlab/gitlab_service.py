@@ -77,8 +77,10 @@ class GitLabService(
 
 gitlab_service_cls = os.environ.get(
     'ISUITE_GITLAB_SERVICE_CLS',
-    'OPENHANDS_GITLAB_SERVICE_CLS',
-    'openhands.integrations.gitlab.gitlab_service.GitLabService',
+    os.environ.get(
+        'OPENHANDS_GITLAB_SERVICE_CLS',
+        'openhands.integrations.gitlab.gitlab_service.GitLabService',
+    ),
 )
 
 # Lazy loading to avoid circular imports

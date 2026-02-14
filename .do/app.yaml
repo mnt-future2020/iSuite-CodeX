@@ -1,0 +1,97 @@
+name: openhands-app
+region: nyc
+
+services:
+  # Backend Service - Python/FastAPI
+  - name: backend
+    github:
+      branch: main
+      deploy_on_push: true
+      repo: mathavanr1968/OpenHands
+
+    build_command: |
+      export PYTHON_VERSION=3.13
+      curl -sSL https://install.python-poetry.org | python3 -
+      export PATH="/root/.local/bin:$PATH"
+      poetry config virtualenvs.create false
+      poetry install --without evaluation --without llama-index
+      cd frontend && npm install && npm run build
+
+    run_command: |
+      export PATH="/root/.local/bin:$PATH"
+      uvicorn openhands.server.listen:app --host 0.0.0.0 --port 3000
+
+    environment_slug: python
+    instance_count: 1
+    instance_size_slug: basic-xs
+
+    http_port: 3000
+
+    health_check:
+      http_path: /api/options/models
+      initial_delay_seconds: 60
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+
+    envs:
+      - key: WORKSPACE_BASE
+        value: /workspace
+      - key: SANDBOX_RUNTIME_CONTAINER_IMAGE
+        value: ghcr.io/all-hands-ai/runtime:0.20-nikolaik
+      - key: SANDBOX_USER_ID
+        value: "1000"
+      - key: RUN_AS_OPENHANDS
+        value: "true"
+      - key: LOG_ALL_EVENTS
+        value: "false"
+
+      # LLM Configuration (Add your API keys in DigitalOcean dashboard)
+      - key: LLM_MODEL
+        value: anthropic/claude-3-5-sonnet-20241022
+        type: SECRET
+      - key: LLM_API_KEY
+        type: SECRET
+
+      # Session Secret (Generate a random string)
+      - key: OH_SECRET_KEY
+        type: SECRET
+
+      # Optional: Database configuration
+      # - key: DATABASE_URL
+      #   type: SECRET
+
+  # Frontend Service - Static Site
+  - name: frontend
+    github:
+      branch: main
+      deploy_on_push: true
+      repo: mathavanr1968/OpenHands
+
+    build_command: |
+      cd frontend
+      npm install
+      npm run build
+
+    static_sites:
+      - name: frontend-static
+        build_command: cd frontend && npm run build
+        output_dir: frontend/build
+        catchall_document: index.html
+        routes:
+          - path: /
+
+    envs:
+      - key: VITE_BACKEND_URL
+        value: ${backend.PUBLIC_URL}
+      - key: VITE_MOCK_API
+        value: "false"
+
+# Optional: Database (uncomment if needed)
+# databases:
+#   - name: openhands-db
+#     engine: PG
+#     version: "15"
+#     production: false
+#     cluster_name: openhands-cluster
