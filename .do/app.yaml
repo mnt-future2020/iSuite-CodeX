@@ -7,32 +7,21 @@ services:
     github:
       branch: main
       deploy_on_push: true
-      repo: mathavanr1968/OpenHands
+      repo: mnt-future2020/iSuite-CodeX
 
-    build_command: |
-      export PYTHON_VERSION=3.13
-      curl -sSL https://install.python-poetry.org | python3 -
-      export PATH="/root/.local/bin:$PATH"
-      poetry config virtualenvs.create false
-      poetry install --without evaluation --without llama-index
-      cd frontend && npm install && npm run build
-
-    run_command: |
-      export PATH="/root/.local/bin:$PATH"
-      uvicorn openhands.server.listen:app --host 0.0.0.0 --port 3000
-
-    environment_slug: python
-    python_version: "3.13"
-    instance_count: 1
-    instance_size_slug: basic-xs
+    # Use Dockerfile to avoid package manager auto-detection
+    dockerfile_path: Dockerfile.digitalocean
 
     http_port: 3000
 
+    instance_count: 1
+    instance_size_slug: basic-xxs
+
     health_check:
       http_path: /api/options/models
-      initial_delay_seconds: 60
+      initial_delay_seconds: 90
       period_seconds: 10
-      timeout_seconds: 5
+      timeout_seconds: 10
       success_threshold: 1
       failure_threshold: 3
 
@@ -59,16 +48,12 @@ services:
       - key: OH_SECRET_KEY
         type: SECRET
 
-      # Optional: Database configuration
-      # - key: DATABASE_URL
-      #   type: SECRET
-
   # Frontend Service - Static Site
   - name: frontend
     github:
       branch: main
       deploy_on_push: true
-      repo: mathavanr1968/OpenHands
+      repo: mnt-future2020/iSuite-CodeX
 
     build_command: |
       cd frontend
@@ -88,11 +73,3 @@ services:
         value: ${backend.PUBLIC_URL}
       - key: VITE_MOCK_API
         value: "false"
-
-# Optional: Database (uncomment if needed)
-# databases:
-#   - name: openhands-db
-#     engine: PG
-#     version: "15"
-#     production: false
-#     cluster_name: openhands-cluster
