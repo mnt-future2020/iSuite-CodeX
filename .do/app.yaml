@@ -9,13 +9,24 @@ services:
       deploy_on_push: true
       repo: mnt-future2020/iSuite-CodeX
 
-    # Use Dockerfile to avoid package manager auto-detection
-    dockerfile_path: Dockerfile.digitalocean
+    # Specify buildpack explicitly
+    build_command: |
+      echo "Installing Poetry..."
+      pip install poetry
+      echo "Installing dependencies..."
+      poetry config virtualenvs.create false
+      poetry install --without evaluation --without llama-index
+      echo "Building frontend..."
+      cd frontend && npm install && npm run build
 
-    http_port: 3000
+    run_command: |
+      uvicorn openhands.server.listen:app --host 0.0.0.0 --port 3000
 
+    environment_slug: python
     instance_count: 1
     instance_size_slug: basic-xxs
+
+    http_port: 3000
 
     health_check:
       http_path: /api/options/models
@@ -35,6 +46,12 @@ services:
       - key: RUN_AS_OPENHANDS
         value: "true"
       - key: LOG_ALL_EVENTS
+        value: "false"
+
+      # Disable UV package manager
+      - key: UV_NO_CACHE
+        value: "1"
+      - key: POETRY_VIRTUALENVS_CREATE
         value: "false"
 
       # LLM Configuration (Add your API keys in DigitalOcean dashboard)
