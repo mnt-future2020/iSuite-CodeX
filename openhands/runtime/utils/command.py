@@ -58,10 +58,10 @@ def get_action_execution_server_startup_command(
     username = (
         override_username
         or RUNTIME_USERNAME
-        or ('openhands' if app_config.run_as_openhands else 'root')
+        or ('isuite' if app_config.run_as_isuite else 'root')
     )
     user_id = (
-        override_user_id or RUNTIME_UID or (1000 if app_config.run_as_openhands else 0)
+        override_user_id or RUNTIME_UID or (1000 if app_config.run_as_isuite else 0)
     )
     logger.debug(f'username {username}, user_id {user_id}')
 

@@ -14,7 +14,7 @@ interface BrowserStore extends BrowserState {
 }
 
 const initialState: BrowserState = {
-  url: "https://github.com/OpenHands/OpenHands",
+  url: "https://github.com/iSuite-IDE/iSuite-CodeX",
   screenshotSrc: "",
 };
 

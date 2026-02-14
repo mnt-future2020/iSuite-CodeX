@@ -30,8 +30,8 @@ export const DEFAULT_SETTINGS: Settings = {
     stdio_servers: [],
     shttp_servers: [],
   },
-  git_user_name: "openhands",
-  git_user_email: "openhands@all-hands.dev",
+  git_user_name: "isuite-codex",
+  git_user_email: "contact@isuite.ai",
   v1_enabled: false,
 };
 

@@ -11,8 +11,8 @@
 
 /* OLD TAILWIND STYLES */
 @theme {
-  --color-primary: #c9b974;
-  --color-logo: #cfb755;
+  --color-primary: #006fee;
+  --color-logo: #006fee;
   --color-base: #0d0f11;
   --color-base-secondary: #24272e;
   --color-danger: #e76a5e;
@@ -21,7 +21,12 @@
   --color-tertiary: #454545;
   --color-tertiary-light: #b7bdc2;
   --color-content: #ecedee;
+  --color-content: #ecedee;
   --color-content-2: #f9fbfe;
+}
+
+.bg-primary-gradient {
+  background: linear-gradient(135deg, #006FEE 0%, #004ABC 100%);
 }
 
 .button-base {
@@ -348,7 +353,12 @@
 }
 
 .api-configuration-modal {
-  box-shadow: 0 183px 51px 0 rgba(0, 0, 0, 0.00), 0 117px 47px 0 rgba(0, 0, 0, 0.01), 0 66px 40px 0 rgba(0, 0, 0, 0.03), 0 29px 29px 0 rgba(0, 0, 0, 0.04), 0 7px 16px 0 rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 183px 51px 0 rgba(0, 0, 0, 0),
+    0 117px 47px 0 rgba(0, 0, 0, 0.01),
+    0 66px 40px 0 rgba(0, 0, 0, 0.03),
+    0 29px 29px 0 rgba(0, 0, 0, 0.04),
+    0 7px 16px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* Shine text effect for streaming content */
@@ -366,5 +376,8 @@
   -webkit-background-clip: text !important;
   background-clip: text !important;
   animation: shine 2s linear infinite;
-  background: radial-gradient(circle at center, rgb(24 24 27 / 85%), transparent) -200% 50% / 200% 100% no-repeat, #f4f4f5;
+  background:
+    radial-gradient(circle at center, rgb(24 24 27 / 85%), transparent) -200%
+      50% / 200% 100% no-repeat,
+    #f4f4f5;
 }

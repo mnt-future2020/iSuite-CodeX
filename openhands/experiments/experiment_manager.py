@@ -66,6 +66,7 @@ class ExperimentManager:
 
 
 experiment_manager_cls = os.environ.get(
+    'ISUITE_EXPERIMENT_MANAGER_CLS',
     'OPENHANDS_EXPERIMENT_MANAGER_CLS',
     'openhands.experiments.experiment_manager.ExperimentManager',
 )

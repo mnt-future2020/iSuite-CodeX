@@ -84,13 +84,13 @@ def get_default_web_url() -> str | None:
 
 def get_openhands_provider_base_url() -> str | None:
     """Return the base URL for the OpenHands provider, if configured."""
-    return os.getenv('OPENHANDS_PROVIDER_BASE_URL') or None
+    return os.getenv('ISUITE_PROVIDER_BASE_URL') or os.getenv('OPENHANDS_PROVIDER_BASE_URL') or None
 
 
 def _get_default_lifespan():
     # Check legacy parameters for saas mode. If we are in SAAS mode do not apply
     # OpenHands alembic migrations
-    if 'saas' in (os.getenv('OPENHANDS_CONFIG_CLS') or '').lower():
+    if 'saas' in (os.getenv('ISUITE_CONFIG_CLS') or os.getenv('OPENHANDS_CONFIG_CLS') or '').lower():
         return None
     return OssAppLifespanService()
 
@@ -123,7 +123,7 @@ class AppServerConfig(OpenHandsModel):
     )
     # Services
     lifespan: AppLifespanService | None = Field(default_factory=_get_default_lifespan)
-    app_mode: AppMode = AppMode.OPENHANDS
+    app_mode: AppMode = AppMode.ISUITE
     web_client: WebClientConfigInjector = Field(
         default_factory=DefaultWebClientConfigInjector
     )

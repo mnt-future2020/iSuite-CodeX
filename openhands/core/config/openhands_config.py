@@ -52,7 +52,7 @@ class OpenHandsConfig(BaseModel):
         workspace_mount_path_in_sandbox (deprecated): Path to mount the workspace in sandbox. Defaults to `/workspace`.
         workspace_mount_rewrite (deprecated): Path to rewrite the workspace mount path.
         cache_dir: Path to cache directory. Defaults to `/tmp/cache`.
-        run_as_openhands: Whether to run as openhands.
+        run_as_isuite: Whether to run as isuite.
         max_iterations: Maximum number of iterations allowed.
         max_budget_per_task: Maximum budget per task, agent stops if exceeded.
         disable_color: Whether to disable terminal colors. For terminals that don't support color.
@@ -100,7 +100,7 @@ class OpenHandsConfig(BaseModel):
     # End of deprecated parameters
 
     cache_dir: str = Field(default='/tmp/cache')
-    run_as_openhands: bool = Field(default=True)
+    run_as_isuite: bool = Field(default=True)
     max_iterations: int = Field(default=OH_MAX_ITERATIONS)
     max_budget_per_task: float | None = Field(default=None)
     init_git_in_empty_workspace: bool = Field(default=False)
@@ -126,10 +126,10 @@ class OpenHandsConfig(BaseModel):
     mcp: MCPConfig = Field(default_factory=MCPConfig)
     kubernetes: KubernetesConfig = Field(default_factory=KubernetesConfig)
     git_user_name: str = Field(
-        default='openhands', description='Git user name for commits made by the agent'
+        default='isuite', description='Git user name for commits made by the agent'
     )
     git_user_email: str = Field(
-        default='openhands@all-hands.dev',
+        default='isuite@isuite-ide.com',
         description='Git user email for commits made by the agent',
     )
 

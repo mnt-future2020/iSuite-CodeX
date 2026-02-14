@@ -64,10 +64,10 @@ class JupyterPlugin(Plugin):
         else:
             # LocalRuntime
             prefix = ''
-            code_repo_path = os.environ.get('OPENHANDS_REPO_PATH')
+            code_repo_path = os.environ.get('ISUITE_REPO_PATH') or os.environ.get('OPENHANDS_REPO_PATH')
             if not code_repo_path:
                 raise ValueError(
-                    'OPENHANDS_REPO_PATH environment variable is not set. '
+                    'ISUITE_REPO_PATH or OPENHANDS_REPO_PATH environment variable is not set. '
                     'This is required for the jupyter plugin to work with LocalRuntime.'
                 )
             # The correct environment is ensured by the PATH in LocalRuntime.

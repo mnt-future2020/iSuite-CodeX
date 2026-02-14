@@ -72,6 +72,7 @@ class GitHubService(
 
 
 github_service_cls = os.environ.get(
+    'ISUITE_GITHUB_SERVICE_CLS',
     'OPENHANDS_GITHUB_SERVICE_CLS',
     'openhands.integrations.github.github_service.GitHubService',
 )

@@ -40,10 +40,10 @@ function OpenHandsApiKeyHelp({ testId }: OpenHandsApiKeyHelpProps) {
     <>
       <HelpLink
         testId={testId}
-        text={t(I18nKey.SETTINGS$OPENHANDS_API_KEY_HELP_TEXT)}
+        text={t(I18nKey.SETTINGS$ISUITE_API_KEY_HELP_TEXT)}
         linkText={t(I18nKey.SETTINGS$NAV_API_KEYS)}
         href="https://app.all-hands.dev/settings/api-keys"
-        suffix={` ${t(I18nKey.SETTINGS$OPENHANDS_API_KEY_HELP_SUFFIX)}`}
+        suffix={` ${t(I18nKey.SETTINGS$ISUITE_API_KEY_HELP_SUFFIX)}`}
       />
       <p className="text-xs">
         {t(I18nKey.SETTINGS$LLM_BILLING_INFO)}{" "}

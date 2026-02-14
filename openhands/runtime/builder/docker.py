@@ -144,6 +144,8 @@ class DockerRuntimeBuilder(RuntimeBuilder):
             'buildx',
             'build',
             '--progress=plain',
+            f'--build-arg=ISUITE_RUNTIME_VERSION={get_version()}',
+            f'--build-arg=ISUITE_RUNTIME_BUILD_TIME={datetime.datetime.now().isoformat()}',
             f'--build-arg=OPENHANDS_RUNTIME_VERSION={get_version()}',
             f'--build-arg=OPENHANDS_RUNTIME_BUILD_TIME={datetime.datetime.now().isoformat()}',
             f'--tag={target_image_hash_name}',

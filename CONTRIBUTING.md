@@ -1,29 +1,30 @@
 # Contributing
 
-Thanks for your interest in contributing to OpenHands! We welcome and appreciate contributions.
+Thanks for your interest in contributing to iSuite CodeX! We welcome and appreciate contributions.
 
-## Understanding OpenHands's CodeBase
+## Understanding iSuite CodeX's CodeBase
 
 To understand the codebase, please refer to the README in each module:
+
 - [frontend](./frontend/README.md)
 - [openhands](./openhands/README.md)
-   - [agenthub](./openhands/agenthub/README.md)
-   - [server](./openhands/server/README.md)
+  - [agenthub](./openhands/agenthub/README.md)
+  - [server](./openhands/server/README.md)
 
-For benchmarks and evaluation, see the [OpenHands/benchmarks](https://github.com/OpenHands/benchmarks) repository.
+For benchmarks and evaluation, see the [iSuite CodeX/benchmarks](https://github.com/iSuite CodeX/benchmarks) repository.
 
 ## Setting up Your Development Environment
 
-We have a separate doc [Development.md](https://github.com/OpenHands/OpenHands/blob/main/Development.md) that tells
+We have a separate doc [Development.md](https://github.com/iSuite CodeX/iSuite CodeX/blob/main/Development.md) that tells
 you how to set up a development workflow.
 
 ## How Can I Contribute?
 
 There are many ways that you can contribute:
 
-1. **Download and use** OpenHands, and send [issues](https://github.com/OpenHands/OpenHands/issues) when you encounter something that isn't working or a feature that you'd like to see.
+1. **Download and use** iSuite CodeX, and send [issues](https://github.com/iSuite CodeX/iSuite CodeX/issues) when you encounter something that isn't working or a feature that you'd like to see.
 2. **Send feedback** after each session by [clicking the thumbs-up thumbs-down buttons](https://docs.openhands.dev/usage/feedback), so we can see where things are working and failing, and also build an open dataset for training code agents.
-3. **Improve the Codebase** by sending [PRs](#sending-pull-requests-to-openhands) (see details below). In particular, we have some [good first issues](https://github.com/OpenHands/OpenHands/labels/good%20first%20issue) that may be ones to start on.
+3. **Improve the Codebase** by sending [PRs](#sending-pull-requests-to-openhands) (see details below). In particular, we have some [good first issues](https://github.com/iSuite CodeX/iSuite CodeX/labels/good%20first%20issue) that may be ones to start on.
 
 ## What Can I Build?
 
@@ -92,6 +93,7 @@ As described [here](https://github.com/commitizen/conventional-commit-types/blob
 - `revert`: Reverts a previous commit
 
 For example, a PR title could be:
+
 - `refactor: modify package path`
 - `feat(frontend): xxxx`, where `(frontend)` means that this PR mainly focuses on the frontend component.
 

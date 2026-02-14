@@ -7,8 +7,8 @@ import { StyledTooltip } from "#/components/shared/buttons/styled-tooltip";
 export function OpenHandsLogoButton() {
   const { t } = useTranslation();
 
-  const tooltipText = t(I18nKey.BRANDING$OPENHANDS);
-  const ariaLabel = t(I18nKey.BRANDING$OPENHANDS_LOGO);
+  const tooltipText = t(I18nKey.BRANDING$ISUITE);
+  const ariaLabel = t(I18nKey.BRANDING$ISUITE_LOGO);
 
   return (
     <StyledTooltip content={tooltipText}>

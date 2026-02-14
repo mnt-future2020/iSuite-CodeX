@@ -21,9 +21,9 @@ jobs:
   call-openhands-resolver:
     uses: OpenHands/OpenHands/.github/workflows/openhands-resolver.yml@main
     with:
-      macro: ${{ vars.OPENHANDS_MACRO || '@openhands-agent' }}
-      max_iterations: ${{ fromJson(vars.OPENHANDS_MAX_ITER || 50) }}
-      base_container_image: ${{ vars.OPENHANDS_BASE_CONTAINER_IMAGE || '' }}
+      macro: ${{ vars.ISUITE_MACRO || vars.OPENHANDS_MACRO || '@isuite-agent' }}
+      max_iterations: ${{ fromJson(vars.ISUITE_MAX_ITER || vars.OPENHANDS_MAX_ITER || 50) }}
+      base_container_image: ${{ vars.ISUITE_BASE_CONTAINER_IMAGE || vars.OPENHANDS_BASE_CONTAINER_IMAGE || '' }}
       LLM_MODEL: ${{ vars.LLM_MODEL || 'anthropic/claude-sonnet-4-20250514' }}
       target_branch: ${{ vars.TARGET_BRANCH || 'main' }}
       runner: ${{ vars.TARGET_RUNNER }}

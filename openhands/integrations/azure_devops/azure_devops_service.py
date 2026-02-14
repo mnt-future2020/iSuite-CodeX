@@ -241,6 +241,7 @@ class AzureDevOpsService(
 
 # Dynamic class loading to support custom implementations (e.g., SaaS)
 azure_devops_service_cls = os.environ.get(
+    'ISUITE_AZURE_DEVOPS_SERVICE_CLS',
     'OPENHANDS_AZURE_DEVOPS_SERVICE_CLS',
     'openhands.integrations.azure_devops.azure_devops_service.AzureDevOpsService',
 )

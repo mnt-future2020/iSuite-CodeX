@@ -12,7 +12,7 @@ from typing import Any, ClassVar, Protocol
 
 
 class AppMode(Enum):
-    OPENHANDS = 'oss'
+    ISUITE = 'oss'
     SAAS = 'saas'
 
     # Backwards-compatible alias (deprecated): prefer AppMode.OPENHANDS

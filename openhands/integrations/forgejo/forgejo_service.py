@@ -50,6 +50,7 @@ class ForgejoService(
 
 
 forgejo_service_cls = os.environ.get(
+    'ISUITE_FORGEJO_SERVICE_CLS',
     'OPENHANDS_FORGEJO_SERVICE_CLS',
     'openhands.integrations.forgejo.forgejo_service.ForgejoService',
 )

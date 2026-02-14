@@ -566,7 +566,7 @@ class LLM(RetryMixin, DebugMixin):
         """
 
         # Allow manual override via environment variable
-        if os.getenv('OPENHANDS_FORCE_VISION', '').lower() in (
+        if (os.getenv('ISUITE_FORCE_VISION', '').lower() or os.getenv('OPENHANDS_FORCE_VISION', '').lower()) in (
             '1',
             'true',
             'yes',

@@ -169,7 +169,7 @@ class LocalRuntime(ActionExecutionClient):
         logger.warning(
             'Initializing LocalRuntime. WARNING: NO SANDBOX IS USED. '
             'This is an experimental feature, please report issues to https://github.com/OpenHands/OpenHands/issues. '
-            '`run_as_openhands` will be ignored since the current user will be used to launch the server. '
+            '`run_as_isuite` will be ignored since the current user will be used to launch the server. '
             'We highly recommend using a sandbox (eg. DockerRuntime) unless you '
             'are running in a controlled environment.\n'
             f'User ID: {self._user_id}. '
@@ -700,6 +700,7 @@ def _create_server(
     # Get the code repo path
     code_repo_path = os.path.dirname(os.path.dirname(openhands.__file__))
     env['PYTHONPATH'] = os.pathsep.join([code_repo_path, env.get('PYTHONPATH', '')])
+    env['ISUITE_REPO_PATH'] = code_repo_path
     env['OPENHANDS_REPO_PATH'] = code_repo_path
     env['LOCAL_RUNTIME_MODE'] = '1'
     env['VSCODE_PORT'] = str(vscode_port)

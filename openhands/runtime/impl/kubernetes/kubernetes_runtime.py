@@ -521,7 +521,7 @@ class KubernetesRuntime(ActionExecutionClient):
             server_port=self._container_port,
             plugins=self.plugins,
             app_config=self.config,
-            override_user_id=0,  # if we use the default of app_config.run_as_openhands then we cant edit files in vscode due to file perms.
+            override_user_id=0,  # if we use the default of app_config.run_as_isuite then we cant edit files in vscode due to file perms.
             override_username='root',
         )
 

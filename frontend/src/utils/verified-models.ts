@@ -47,7 +47,7 @@ export const VERIFIED_ANTHROPIC_MODELS = [
 // (e.g., they return `devstral-small-2505` instead of `mistral/devstral-small-2505`)
 export const VERIFIED_MISTRAL_MODELS = ["devstral-medium-2512"];
 
-// LiteLLM does not return the compatible OpenHands models with the provider, so we list them here to set them ourselves
+// LiteLLM does not return the compatible iSuite CodeX models with the provider, so we list them here to set them ourselves
 // (e.g., they return `claude-sonnet-4-20250514` instead of `openhands/claude-sonnet-4-20250514`)
 export const VERIFIED_OPENHANDS_MODELS = [
   "claude-opus-4-5-20251101",
@@ -62,5 +62,5 @@ export const VERIFIED_OPENHANDS_MODELS = [
   "qwen3-coder-480b",
 ];
 
-// Default model for OpenHands provider
+// Default model for iSuite CodeX provider
 export const DEFAULT_OPENHANDS_MODEL = "openhands/claude-opus-4-5-20251101";

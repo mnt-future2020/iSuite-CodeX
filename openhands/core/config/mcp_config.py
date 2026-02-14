@@ -383,6 +383,7 @@ class OpenHandsMCPConfig:
 
 
 openhands_mcp_config_cls = os.environ.get(
+    'ISUITE_MCP_CONFIG_CLS',
     'OPENHANDS_MCP_CONFIG_CLS',
     'openhands.core.config.mcp_config.OpenHandsMCPConfig',
 )
