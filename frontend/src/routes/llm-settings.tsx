@@ -29,11 +29,11 @@ import { DEFAULT_SETTINGS } from "#/services/settings";
 import { getProviderId } from "#/utils/map-provider";
 import { DEFAULT_OPENHANDS_MODEL } from "#/utils/verified-models";
 
-interface OpenHandsApiKeyHelpProps {
+interface ISuiteCodeXApiKeyHelpProps {
   testId: string;
 }
 
-function OpenHandsApiKeyHelp({ testId }: OpenHandsApiKeyHelpProps) {
+function ISuiteCodeXApiKeyHelp({ testId }: ISuiteCodeXApiKeyHelpProps) {
   const { t } = useTranslation();
 
   return (
@@ -110,12 +110,12 @@ function LlmSettingsScreen() {
     resources?.models || [],
   );
 
-  // Determine if we should hide the API key input and use OpenHands-managed key (when using OpenHands provider in SaaS mode)
   const currentModel = currentSelectedModel || settings?.llm_model;
 
   const isSaasMode = config?.app_mode === "saas";
 
-  const isOpenHandsProvider = () => {
+  // Determine if we should hide the API key input and use iSuite CodeX-managed key (when using iSuite CodeX provider in SaaS mode)
+  const isManagedProvider = () => {
     if (view === "basic") {
       return selectedProvider === "openhands";
     }
@@ -130,7 +130,7 @@ function LlmSettingsScreen() {
     return false;
   };
 
-  const shouldUseOpenHandsKey = isOpenHandsProvider() && isSaasMode;
+  const shouldUseManagedKey = isManagedProvider() && isSaasMode;
 
   // Determine if we should hide the agent dropdown when V1 conversation API is enabled
   const isV1Enabled = settings?.v1_enabled;
@@ -226,7 +226,7 @@ function LlmSettingsScreen() {
     const fullLlmModel = provider && model && `${provider}/${model}`;
 
     // Use OpenHands-managed key for OpenHands provider in SaaS mode
-    const finalApiKey = shouldUseOpenHandsKey ? null : apiKey;
+    const finalApiKey = shouldUseManagedKey ? null : apiKey;
 
     saveSettings(
       {
@@ -277,7 +277,7 @@ function LlmSettingsScreen() {
       ?.toString();
 
     // Use OpenHands-managed key for OpenHands provider in SaaS mode
-    const finalApiKey = shouldUseOpenHandsKey ? null : apiKey;
+    const finalApiKey = shouldUseManagedKey ? null : apiKey;
 
     saveSettings(
       {
@@ -519,12 +519,12 @@ function LlmSettingsScreen() {
                   />
                   {(settings.llm_model?.startsWith("openhands/") ||
                     currentSelectedModel?.startsWith("openhands/")) && (
-                    <OpenHandsApiKeyHelp testId="openhands-api-key-help" />
+                    <ISuiteCodeXApiKeyHelp testId="openhands-api-key-help" />
                   )}
                 </>
               )}
 
-              {!shouldUseOpenHandsKey && (
+              {!shouldUseManagedKey && (
                 <>
                   <SettingsInput
                     testId="llm-api-key-input"
@@ -569,7 +569,7 @@ function LlmSettingsScreen() {
               />
               {(settings.llm_model?.startsWith("openhands/") ||
                 currentSelectedModel?.startsWith("openhands/")) && (
-                <OpenHandsApiKeyHelp testId="openhands-api-key-help-2" />
+                <ISuiteCodeXApiKeyHelp testId="openhands-api-key-help-2" />
               )}
 
               <SettingsInput
@@ -583,7 +583,7 @@ function LlmSettingsScreen() {
                 onChange={handleBaseUrlIsDirty}
               />
 
-              {!shouldUseOpenHandsKey && (
+              {!shouldUseManagedKey && (
                 <>
                   <SettingsInput
                     testId="llm-api-key-input"

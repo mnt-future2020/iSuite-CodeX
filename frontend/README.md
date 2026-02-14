@@ -1,8 +1,8 @@
-# Getting Started with the OpenHands Frontend
+# Getting Started with the iSuite CodeX Frontend
 
 ## Overview
 
-This is the frontend of the OpenHands project. It is a React application that provides a web interface for the OpenHands project.
+This is the frontend of the iSuite CodeX project. It is a React application that provides a web interface for the iSuite CodeX project.
 
 ## Tech Stack
 

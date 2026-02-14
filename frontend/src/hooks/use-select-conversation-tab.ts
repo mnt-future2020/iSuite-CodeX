@@ -15,6 +15,7 @@ export function useSelectConversationTab() {
     selectedTab,
     isRightPanelShown,
     setHasRightPanelToggled,
+    setIsRightPanelShown,
     setSelectedTab,
   } = useConversationStore();
 
@@ -37,12 +38,14 @@ export function useSelectConversationTab() {
     if (selectedTab === tab && isRightPanelShown) {
       // If clicking the same active tab, close the drawer
       setHasRightPanelToggled(false);
+      setIsRightPanelShown(false);
       setPersistedRightPanelShown(false);
     } else {
       // If clicking a different tab or drawer is closed, open drawer and select tab
       onTabChange(tab);
       if (!isRightPanelShown) {
         setHasRightPanelToggled(true);
+        setIsRightPanelShown(true);
         setPersistedRightPanelShown(true);
       }
     }
@@ -57,6 +60,7 @@ export function useSelectConversationTab() {
     onTabChange(tab);
     if (!isRightPanelShown) {
       setHasRightPanelToggled(true);
+      setIsRightPanelShown(true);
       setPersistedRightPanelShown(true);
     }
   };
